@@ -1,0 +1,129 @@
+/*
+ * ACME Design System — semantic token variables.
+ * Import once at your app root. Toggle dark mode by adding class="dark"
+ * to <html> (matches Tailwind's darkMode: 'class').
+ */
+
+:root {
+  /* background */
+  --acme-bg-default: #ffffff;
+  --acme-bg-subtle: #f8fafc;
+  --acme-bg-muted: #f1f5f9;
+  --acme-bg-emphasis: #0f172a;
+  --acme-bg-brand: #4f46e5;
+
+  /* surface */
+  --acme-surface: #ffffff;
+  --acme-surface-inverse: #1e293b;
+  --acme-surface-overlay: rgba(15, 23, 42, 0.6);
+
+  /* text */
+  --acme-text-default: #0f172a;
+  --acme-text-muted: #64748b;
+  --acme-text-subtle: #475569;
+  --acme-text-inverted: #ffffff;
+  --acme-text-on-inverse: #f8fafc;
+  --acme-text-disabled: #94a3b8;
+  --acme-text-brand: #4f46e5;
+  --acme-text-on-brand: #ffffff;
+  --acme-text-accent-on-inverse: #a5b4fc;
+
+  /* interactive */
+  --acme-interactive-primary: #4f46e5;
+  --acme-interactive-primary-hover: #4338ca;
+  --acme-interactive-primary-fg: #ffffff;
+  --acme-interactive-primary-subtle: #eef2ff;
+  --acme-interactive-primary-light: #818cf8;
+  --acme-interactive-neutral: #64748b;
+
+  /* border */
+  --acme-border-default: #e2e8f0;
+  --acme-border-strong: #cbd5e1;
+  --acme-border-input: #94a3b8;
+  --acme-border-focus: #6366f1;
+  --acme-border-brand: #4f46e5;
+
+  /* feedback */
+  --acme-success: #059669;
+  --acme-success-bg: #ecfdf5;
+  --acme-success-text: #064e3b;
+  --acme-success-border: #10b981;
+  --acme-warning: #b45309;
+  --acme-warning-bg: #fffbeb;
+  --acme-warning-text: #78350f;
+  --acme-warning-border: #f59e0b;
+  --acme-error: #dc2626;
+  --acme-error-bg: #fef2f2;
+  --acme-error-text: #7f1d1d;
+  --acme-error-border: #dc2626;
+  --acme-info-bg: #eef2ff;
+  --acme-info-border: #4f46e5;
+  --acme-info-icon: #4f46e5;
+  --acme-info-text: #4338ca;
+
+  /* shadows */
+  --acme-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --acme-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --acme-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --acme-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --acme-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --acme-shadow-focus: 0 0 0 3px rgba(79, 70, 229, 0.35);
+  --acme-shadow-focus-subtle: 0 0 0 3px rgba(79, 70, 229, 0.12);
+  --acme-shadow-focus-error: 0 0 0 3px rgba(220, 38, 38, 0.12);
+}
+
+.dark {
+  --acme-bg-default: #0f172a;
+  --acme-bg-subtle: #1e293b;
+  --acme-bg-muted: #334155;
+  --acme-bg-emphasis: #ffffff;
+  --acme-bg-brand: #4f46e5;
+
+  --acme-surface: #1e293b;
+  --acme-surface-inverse: #f1f5f9;
+  --acme-surface-overlay: rgba(15, 23, 42, 0.6);
+
+  --acme-text-default: #f1f5f9;
+  --acme-text-muted: #cbd5e1;
+  --acme-text-subtle: #94a3b8;
+  --acme-text-inverted: #0f172a;
+  --acme-text-on-inverse: #0f172a;
+  --acme-text-disabled: #475569;
+  --acme-text-brand: #818cf8;
+  --acme-text-on-brand: #ffffff;
+  --acme-text-accent-on-inverse: #4338ca;
+
+  --acme-interactive-primary: #818cf8;
+  --acme-interactive-primary-hover: #a5b4fc;
+  --acme-interactive-primary-fg: #1e1b4b;
+  --acme-interactive-primary-subtle: #1e1b4b;
+  --acme-interactive-primary-light: #6366f1;
+  --acme-interactive-neutral: #94a3b8;
+
+  --acme-border-default: #334155;
+  --acme-border-strong: #475569;
+  --acme-border-input: #64748b;
+  --acme-border-focus: #818cf8;
+  --acme-border-brand: #6366f1;
+
+  --acme-success: #34d399;
+  --acme-success-bg: #022c22;
+  --acme-success-text: #34d399;
+  --acme-success-border: #065f46;
+  --acme-warning: #fbbf24;
+  --acme-warning-bg: #451a03;
+  --acme-warning-text: #fbbf24;
+  --acme-warning-border: #92400e;
+  --acme-error: #f87171;
+  --acme-error-bg: #450a0a;
+  --acme-error-text: #fca5a5;
+  --acme-error-border: #991b1b;
+  --acme-info-bg: #1e1b4b;
+  --acme-info-border: #3730a3;
+  --acme-info-icon: #818cf8;
+  --acme-info-text: #a5b4fc;
+
+  --acme-shadow-focus: 0 0 0 3px rgba(129, 140, 248, 0.4);
+  --acme-shadow-focus-subtle: 0 0 0 3px rgba(129, 140, 248, 0.15);
+  --acme-shadow-focus-error: 0 0 0 3px rgba(248, 113, 113, 0.15);
+}
