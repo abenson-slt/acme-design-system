@@ -5,6 +5,7 @@ import { Button } from './Button';
 const meta: Meta<typeof Button> = {
   title: 'Components/Button',
   component: Button,
+  tags: ['autodocs'],
   argTypes: {
     variant: {
       control: 'select',
@@ -132,7 +133,7 @@ export const FullWidth: Story = {
 
 export const DarkMode: Story = {
   render: () => (
-    <div className="dark bg-bg p-6 rounded-lg flex flex-wrap items-center gap-4">
+    <div className="dark flex flex-wrap items-center gap-4 rounded-lg bg-bg p-6">
       <Button variant="primary">Primary</Button>
       <Button variant="secondary">Secondary</Button>
       <Button variant="outline">Outline</Button>

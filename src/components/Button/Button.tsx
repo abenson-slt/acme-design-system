@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../../lib/cn';
+import { Spinner } from '../Spinner';
 
 const buttonVariants = cva(
   'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium transition-colors ' +
@@ -11,9 +12,9 @@ const buttonVariants = cva(
         primary:
           'bg-interactive-primary text-interactive-primary-fg hover:bg-interactive-primary-hover',
         secondary:
-          'bg-bg-muted text-content border border-border hover:bg-bg-subtle',
+          'border border-border bg-bg-muted text-content hover:bg-bg-subtle',
         outline:
-          'bg-transparent text-interactive-primary border border-interactive-primary hover:bg-interactive-primary-subtle',
+          'border border-interactive-primary bg-transparent text-interactive-primary hover:bg-interactive-primary-subtle',
         ghost: 'bg-transparent text-content hover:bg-bg-subtle',
         destructive:
           'bg-error text-content-on-brand hover:opacity-90',
@@ -41,31 +42,6 @@ export interface ButtonProps
   trailingIcon?: React.ReactNode;
   isLoading?: boolean;
   fullWidth?: boolean;
-}
-
-function Spinner({ className }: { className?: string }) {
-  return (
-    <svg
-      className={cn('animate-spin', className)}
-      viewBox="0 0 24 24"
-      fill="none"
-      aria-hidden="true"
-    >
-      <circle
-        className="opacity-25"
-        cx="12"
-        cy="12"
-        r="10"
-        stroke="currentColor"
-        strokeWidth="4"
-      />
-      <path
-        className="opacity-75"
-        fill="currentColor"
-        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-      />
-    </svg>
-  );
 }
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -96,7 +72,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         {isLoading ? (
-          <Spinner />
+          <Spinner size={size ?? 'md'} />
         ) : (
           leadingIcon && <span className="shrink-0">{leadingIcon}</span>
         )}

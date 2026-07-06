@@ -1,0 +1,243 @@
+{
+  "$schema": "Machine-readable manifest of @acme/design-system components. Kept hand-authored and in sync with src/. Intended for AI agents choosing how to use this library without reading full source.",
+  "package": "@acme/design-system",
+  "importRoot": "@acme/design-system",
+  "components": [
+    {
+      "name": "Button",
+      "importPath": "@acme/design-system",
+      "description": "Triggers an action or event.",
+      "props": [
+        { "name": "variant", "type": "'primary' | 'secondary' | 'outline' | 'ghost' | 'destructive'", "default": "'primary'" },
+        { "name": "size", "type": "'sm' | 'md' | 'lg'", "default": "'md'" },
+        { "name": "fullWidth", "type": "boolean", "default": "false" },
+        { "name": "isLoading", "type": "boolean", "default": "false", "description": "Shows a Spinner in place of the leading icon and disables the button." },
+        { "name": "leadingIcon", "type": "React.ReactNode" },
+        { "name": "trailingIcon", "type": "React.ReactNode" },
+        { "name": "disabled", "type": "boolean", "default": "false" },
+        { "name": "...rest", "type": "React.ButtonHTMLAttributes<HTMLButtonElement>" }
+      ],
+      "variants": ["primary", "secondary", "outline", "ghost", "destructive"],
+      "example": "<Button variant=\"primary\" size=\"md\" leadingIcon={<Plus />}>Add item</Button>"
+    },
+    {
+      "name": "Input",
+      "importPath": "@acme/design-system",
+      "description": "Single-line text input.",
+      "props": [
+        { "name": "invalid", "type": "boolean", "default": "false" },
+        { "name": "leadingIcon", "type": "React.ReactNode" },
+        { "name": "trailingIcon", "type": "React.ReactNode" },
+        { "name": "...rest", "type": "React.InputHTMLAttributes<HTMLInputElement>" }
+      ],
+      "example": "<Input placeholder=\"you@example.com\" leadingIcon={<Mail />} />"
+    },
+    {
+      "name": "Textarea",
+      "importPath": "@acme/design-system",
+      "description": "Multi-line text input.",
+      "props": [
+        { "name": "invalid", "type": "boolean", "default": "false" },
+        { "name": "rows", "type": "number", "default": "3" },
+        { "name": "...rest", "type": "React.TextareaHTMLAttributes<HTMLTextAreaElement>" }
+      ],
+      "example": "<Textarea placeholder=\"Tell us about yourself...\" rows={4} />"
+    },
+    {
+      "name": "Label",
+      "importPath": "@acme/design-system",
+      "description": "Accessible form label built on Radix Label. Use inside FormField or standalone with htmlFor.",
+      "props": [
+        { "name": "required", "type": "boolean", "default": "false", "description": "Appends a red asterisk." },
+        { "name": "...rest", "type": "React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>" }
+      ],
+      "example": "<Label htmlFor=\"email\" required>Email address</Label>"
+    },
+    {
+      "name": "FormField",
+      "importPath": "@acme/design-system",
+      "description": "Composes a Label + form control + hint/error message. Clones the single child element to inject id, aria-describedby, and invalid.",
+      "props": [
+        { "name": "id", "type": "string", "description": "Required. Applied to the label's htmlFor and cloned onto the child control." },
+        { "name": "label", "type": "React.ReactNode" },
+        { "name": "required", "type": "boolean", "default": "false" },
+        { "name": "hint", "type": "React.ReactNode", "description": "Shown when there is no error." },
+        { "name": "error", "type": "React.ReactNode", "description": "Shown instead of hint; also sets invalid=true on the child." },
+        { "name": "children", "type": "React.ReactElement<{ id?, 'aria-describedby'?, invalid? }>", "description": "Exactly one form control, e.g. <Input /> or <Textarea />." }
+      ],
+      "example": "<FormField id=\"email\" label=\"Email\" error={errors.email}>\n  <Input />\n</FormField>"
+    },
+    {
+      "name": "Spinner",
+      "importPath": "@acme/design-system",
+      "description": "Standalone loading spinner (SVG). Used internally by Button's isLoading state; also usable on its own.",
+      "props": [
+        { "name": "size", "type": "'sm' | 'md' | 'lg'", "default": "'md'" },
+        { "name": "label", "type": "string", "default": "'Loading'", "description": "Accessible label (role=status, aria-label)." },
+        { "name": "...rest", "type": "React.SVGAttributes<SVGSVGElement>" }
+      ],
+      "example": "<Spinner size=\"sm\" />"
+    },
+    {
+      "name": "Badge",
+      "importPath": "@acme/design-system",
+      "description": "Non-interactive status pill.",
+      "props": [
+        { "name": "variant", "type": "'default' | 'success' | 'warning' | 'error' | 'info'", "default": "'default'" },
+        { "name": "...rest", "type": "React.HTMLAttributes<HTMLSpanElement>" }
+      ],
+      "variants": ["default", "success", "warning", "error", "info"],
+      "example": "<Badge variant=\"success\">Active</Badge>"
+    },
+    {
+      "name": "Tag",
+      "importPath": "@acme/design-system",
+      "description": "Like Badge but interactive/removable.",
+      "props": [
+        { "name": "variant", "type": "'default' | 'success' | 'warning' | 'error' | 'info'", "default": "'default'" },
+        { "name": "onRemove", "type": "() => void", "description": "If provided, renders a dismiss 'x' button." },
+        { "name": "removeLabel", "type": "string", "description": "Accessible label for the remove button. Defaults to 'Remove {children}'." },
+        { "name": "...rest", "type": "React.HTMLAttributes<HTMLSpanElement>" }
+      ],
+      "variants": ["default", "success", "warning", "error", "info"],
+      "example": "<Tag variant=\"info\" onRemove={() => removeFilter(id)}>React</Tag>"
+    },
+    {
+      "name": "Avatar",
+      "importPath": "@acme/design-system",
+      "description": "Image avatar with graceful fallback to initials derived from `name` if no src or the image fails to load.",
+      "props": [
+        { "name": "name", "type": "string", "description": "Required. Used for alt text and derived initials." },
+        { "name": "src", "type": "string" },
+        { "name": "size", "type": "'sm' | 'md' | 'lg'", "default": "'md'" },
+        { "name": "...rest", "type": "React.HTMLAttributes<HTMLSpanElement>" }
+      ],
+      "example": "<Avatar name=\"Jane Doe\" src={user.avatarUrl} size=\"md\" />"
+    },
+    {
+      "name": "Checkbox",
+      "importPath": "@acme/design-system",
+      "description": "Wraps @radix-ui/react-checkbox. Supports checked, indeterminate ('indeterminate'), and unchecked states.",
+      "props": [
+        { "name": "invalid", "type": "boolean", "default": "false" },
+        { "name": "checked", "type": "boolean | 'indeterminate'" },
+        { "name": "defaultChecked", "type": "boolean | 'indeterminate'" },
+        { "name": "onCheckedChange", "type": "(checked: boolean | 'indeterminate') => void" },
+        { "name": "disabled", "type": "boolean", "default": "false" },
+        { "name": "...rest", "type": "React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>" }
+      ],
+      "example": "<Checkbox id=\"terms\" /> <Label htmlFor=\"terms\">Accept terms</Label>"
+    },
+    {
+      "name": "Radio",
+      "importPath": "@acme/design-system",
+      "description": "Wraps @radix-ui/react-radio-group. Exports both Radio (item) and RadioGroup (root, required wrapper).",
+      "props": [
+        { "name": "value", "type": "string", "description": "Required on Radio. Passed to the parent RadioGroup's onValueChange." },
+        { "name": "invalid", "type": "boolean", "default": "false" },
+        { "name": "disabled", "type": "boolean", "default": "false" },
+        { "name": "...rest", "type": "React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item>" }
+      ],
+      "example": "<RadioGroup defaultValue=\"a\">\n  <Radio value=\"a\" id=\"ra\" /><Label htmlFor=\"ra\">A</Label>\n</RadioGroup>"
+    },
+    {
+      "name": "Switch",
+      "importPath": "@acme/design-system",
+      "description": "Wraps @radix-ui/react-switch.",
+      "props": [
+        { "name": "invalid", "type": "boolean", "default": "false" },
+        { "name": "checked", "type": "boolean" },
+        { "name": "defaultChecked", "type": "boolean" },
+        { "name": "onCheckedChange", "type": "(checked: boolean) => void" },
+        { "name": "disabled", "type": "boolean", "default": "false" },
+        { "name": "...rest", "type": "React.ComponentPropsWithoutRef<typeof SwitchPrimitive.Root>" }
+      ],
+      "example": "<Switch id=\"notifications\" defaultChecked /> <Label htmlFor=\"notifications\">Enable notifications</Label>"
+    },
+    {
+      "name": "Select",
+      "importPath": "@acme/design-system",
+      "description": "Wraps @radix-ui/react-select. Exports Select (root), SelectTrigger, SelectValue, SelectContent, SelectGroup, SelectLabel, SelectItem, SelectSeparator.",
+      "props": [
+        { "name": "SelectTrigger.invalid", "type": "boolean", "default": "false" },
+        { "name": "Select.value / defaultValue / onValueChange", "type": "standard Radix Select.Root props" },
+        { "name": "Select.disabled", "type": "boolean", "default": "false" }
+      ],
+      "example": "<Select>\n  <SelectTrigger className=\"w-64\"><SelectValue placeholder=\"Select a fruit\" /></SelectTrigger>\n  <SelectContent>\n    <SelectItem value=\"apple\">Apple</SelectItem>\n  </SelectContent>\n</Select>"
+    },
+    {
+      "name": "Tooltip",
+      "importPath": "@acme/design-system",
+      "description": "Wraps @radix-ui/react-tooltip. Requires TooltipProvider mounted once (typically at app root), then Tooltip/TooltipTrigger/TooltipContent per instance.",
+      "props": [
+        { "name": "TooltipContent.side", "type": "'top' | 'right' | 'bottom' | 'left'", "default": "'top'" },
+        { "name": "TooltipContent.sideOffset", "type": "number", "default": "6" }
+      ],
+      "example": "<TooltipProvider>\n  <Tooltip>\n    <TooltipTrigger asChild><Button>Hover</Button></TooltipTrigger>\n    <TooltipContent>Tip text</TooltipContent>\n  </Tooltip>\n</TooltipProvider>"
+    },
+    {
+      "name": "Popover",
+      "importPath": "@acme/design-system",
+      "description": "Wraps @radix-ui/react-popover. Exports Popover, PopoverTrigger, PopoverAnchor, PopoverContent, PopoverClose.",
+      "props": [
+        { "name": "PopoverContent.align", "type": "'start' | 'center' | 'end'", "default": "'center'" },
+        { "name": "PopoverContent.sideOffset", "type": "number", "default": "6" }
+      ],
+      "example": "<Popover>\n  <PopoverTrigger asChild><Button>Open</Button></PopoverTrigger>\n  <PopoverContent>Content</PopoverContent>\n</Popover>"
+    },
+    {
+      "name": "DropdownMenu",
+      "importPath": "@acme/design-system",
+      "description": "Wraps @radix-ui/react-dropdown-menu. Exports DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuCheckboxItem, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuSub, DropdownMenuSubTrigger, DropdownMenuSubContent, DropdownMenuGroup.",
+      "props": [
+        { "name": "DropdownMenuItem.inset", "type": "boolean", "default": "false" },
+        { "name": "DropdownMenuCheckboxItem.checked / onCheckedChange", "type": "standard Radix CheckboxItem props" }
+      ],
+      "example": "<DropdownMenu>\n  <DropdownMenuTrigger asChild><Button>Open</Button></DropdownMenuTrigger>\n  <DropdownMenuContent>\n    <DropdownMenuItem>Profile</DropdownMenuItem>\n  </DropdownMenuContent>\n</DropdownMenu>"
+    },
+    {
+      "name": "Dialog",
+      "importPath": "@acme/design-system",
+      "description": "Wraps @radix-ui/react-dialog. Exports Dialog, DialogTrigger, DialogContent (renders its own Portal + Overlay + close button), DialogHeader, DialogFooter, DialogTitle, DialogDescription, DialogClose.",
+      "props": [
+        { "name": "Dialog.open / defaultOpen / onOpenChange", "type": "standard Radix Dialog.Root props" }
+      ],
+      "example": "<Dialog>\n  <DialogTrigger asChild><Button>Open</Button></DialogTrigger>\n  <DialogContent>\n    <DialogHeader><DialogTitle>Title</DialogTitle><DialogDescription>Desc</DialogDescription></DialogHeader>\n    <DialogFooter><DialogClose asChild><Button variant=\"secondary\">Cancel</Button></DialogClose><Button>Save</Button></DialogFooter>\n  </DialogContent>\n</Dialog>"
+    },
+    {
+      "name": "Toast",
+      "importPath": "@acme/design-system",
+      "description": "Wraps @radix-ui/react-toast. Requires ToastProvider mounted once near the app root — it renders both the Radix Provider AND Viewport for you. Render individual Toast elements (controlled via your own open state or a toast-management hook) anywhere inside it.",
+      "props": [
+        { "name": "Toast.variant", "type": "'default' | 'success' | 'warning' | 'error' | 'info'", "default": "'default'" },
+        { "name": "Toast.open / onOpenChange / duration", "type": "standard Radix Toast.Root props" },
+        { "name": "ToastProvider.swipeDirection", "type": "'up' | 'down' | 'left' | 'right'", "default": "'right'" }
+      ],
+      "setup": "Mount <ToastProvider> once (e.g. in your app shell). It renders <ToastPrimitive.Viewport> internally, fixed to the bottom-right. Do not render a separate Viewport.",
+      "example": "<ToastProvider>\n  {/* app content */}\n  <Toast open={open} onOpenChange={setOpen} variant=\"success\">\n    <ToastTitle>Saved</ToastTitle>\n    <ToastDescription>Your changes were saved.</ToastDescription>\n    <ToastAction altText=\"Undo\" asChild><button>Undo</button></ToastAction>\n  </Toast>\n</ToastProvider>"
+    },
+    {
+      "name": "Card",
+      "importPath": "@acme/design-system",
+      "description": "Simple container. Exports Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter.",
+      "props": [
+        { "name": "...rest (all subcomponents)", "type": "React.HTMLAttributes<HTMLDivElement> (or HTMLHeadingElement/HTMLParagraphElement for Title/Description)" }
+      ],
+      "example": "<Card className=\"w-80\">\n  <CardHeader><CardTitle>Title</CardTitle><CardDescription>Desc</CardDescription></CardHeader>\n  <CardContent>Body</CardContent>\n  <CardFooter><Button>Action</Button></CardFooter>\n</Card>"
+    },
+    {
+      "name": "Alert",
+      "importPath": "@acme/design-system",
+      "description": "Feedback-token-driven callout with an icon + title + description slot. role=\"alert\".",
+      "props": [
+        { "name": "variant", "type": "'default' | 'success' | 'warning' | 'error' | 'info'", "default": "'default'" },
+        { "name": "title", "type": "React.ReactNode" },
+        { "name": "icon", "type": "boolean", "default": "true", "description": "Set to false to hide the leading variant icon." },
+        { "name": "children", "type": "React.ReactNode", "description": "Description body." },
+        { "name": "...rest", "type": "Omit<React.HTMLAttributes<HTMLDivElement>, 'title'>" }
+      ],
+      "variants": ["default", "success", "warning", "error", "info"],
+      "example": "<Alert variant=\"error\" title=\"Something went wrong\">Please try again.</Alert>"
+    }
+  ]
+}
