@@ -1,68 +1,65 @@
 # Figma Code Connect — Button (TODO)
 
-## Status: not completed — needs a human or a session with direct file access to finish
+## Status: blocked on Figma plan/seat tier — not a node-lookup problem
 
-## What was attempted
+## Root cause (confirmed 2026-07-06)
 
-Figma MCP tools were available in this session (`whoami` succeeded, connected as
-`abenson@straightlinetheory.com`). The `figma-code-connect` skill was loaded and followed.
+The Button component set **is** reachable — it lives at file key
+`LGc6BjmuWdIwA4aJGgCmiS`, node `24:2` (page "Button", node `12:8`), with all 45 variants
+(Size × Style[Primary/Secondary/Ghost/Destructive/Outline] × State) plus the row labels,
+exactly matching the component this repo's `src/components/Button/Button.tsx` was built from.
 
-`search_design_system` (queried for "Button" against file key `LGc6BjmuWdIwA4aJGgCmiS`) confirmed
-a **published** `Button` component set exists in the "ACME Design System" library:
+An earlier attempt concluded the file "only exposes a Cover page" — that was a false lead.
+`get_metadata` called with **no** `nodeId` only lists top-level pages, and for this file that
+call returns just `0:1: Cover`. But calling `get_metadata` (or any other tool) **with** a known
+node ID (`12:8` / `24:2`) resolves correctly and returns full content. The page-listing call
+appears to be an incomplete/best-effort index in this bridge, not a reliable page enumeration —
+don't trust "no other pages found" as evidence a node doesn't exist; look it up directly if you
+already know (or can search-index) the ID.
 
-- Library name: `ACME Design System`
-- Component name: `Button`
-- Component type: `component_set`
-- Component key: `15b4977912930995a0a3b26b41b614b7fbafa677`
-- Library key: `lk-489e7dd00abf2b7b4fce4d3117fe5b337e0fc555bb7511683760602a0b625c72fbcabaadfc5535532db081e2c60c2aa28c12610664d7d3a583dc0ed080350b76`
-- Indexed path: `design_systems/ACME Design System/components/Button`
-- Description (from Figma): "Triggers an action or event. Use Primary for the main
-  call-to-action on a page, Secondary for supporting actions, Outline for a low-emphasis
-  alternative to Secondary on colored or image backgrounds, Ghost for low-emphasis or inline
-  actions, and Destructive for irreversible or dangerous actions. Pair an icon with the label
-  using the ShowIcon property."
+The actual blocker is licensing, not lookup: calling either Code Connect tool on this node returns
 
-However, `get_metadata` on file key `LGc6BjmuWdIwA4aJGgCmiS` only returns a single top-level page:
-`0:1: Cover` — a marketing/cover page for the design system, with no "Components" page and no
-Button node reachable from it. The Button component set that the search index found is a
-**published library component**, and its actual node presumably lives in a separate source file
-(the library's underlying file) that this session does not have a fileKey/node-id for.
+```
+You need a Dev or Full seat on an Organization or Enterprise plan to use Code Connect.
+Ask a Figma admin to upgrade your plan or seat.
+https://developers.figma.com/docs/code-connect/
+```
 
-Code Connect's `get_code_connect_suggestions` / `get_context_for_code_connect` tools both require
-a real `fileKey` + `nodeId` pointing at the component (or an instance of it) inside a design file —
-a component key alone is not sufficient input for either tool. Guessing a node ID was avoided per
-instructions not to fabricate a mapping.
+Confirmed on both:
+- `get_context_for_code_connect(fileKey: "LGc6BjmuWdIwA4aJGgCmiS", nodeId: "24:2")`
+- `get_code_connect_suggestions(fileKey: "LGc6BjmuWdIwA4aJGgCmiS", nodeId: "24:2")`
+
+This is an account/org plan restriction on whoever's Figma credentials this MCP session is
+authenticated as (`abenson@straightlinetheory.com` per `whoami`) — it cannot be worked around
+with a different node ID, a different file, or different tool arguments.
 
 ## What's needed to finish this
 
-1. Open the actual ACME Design System **library source file** in Figma (not the cover-page file
-   `LGc6BjmuWdIwA4aJGgCmiS` linked above) and navigate to the "Components" page containing the
-   `Button` component set.
-2. Copy the Figma URL for that component set — it must include a `node-id` query param, e.g.
-   `https://www.figma.com/design/<fileKey>/<fileName>?node-id=<X>-<Y>`.
-3. Re-run the `figma-code-connect` skill workflow with that URL:
-   - `get_code_connect_suggestions(fileKey, nodeId)` to confirm the component is published and
-     find the `mainComponentNodeId` for the component set.
-   - `get_context_for_code_connect(fileKey, mainComponentNodeId, clientFrameworks: ["react"],
-     clientLanguages: ["typescript"])` to get the full property list (expected: `Size` variant,
-     `Style` variant with options Primary/Secondary/Ghost/Destructive/Outline, a `State` variant,
-     and a `ShowIcon` boolean per the component description above).
-4. Map properties to `src/components/Button/Button.tsx`'s real prop types:
+1. A Figma admin upgrades the relevant seat to **Dev or Full on an Organization or Enterprise
+   plan**. (Team/Starter/Professional-plan seats, or Viewer/Collaborator seats on any plan, do
+   not unlock Code Connect regardless of node.)
+2. Once upgraded, re-run, exactly as-is (no new lookup needed):
+   ```
+   get_context_for_code_connect(fileKey: "LGc6BjmuWdIwA4aJGgCmiS", nodeId: "24:2",
+     clientFrameworks: "react", clientLanguages: "typescript")
+   ```
+   This should return the full property list (`Size`, `Style`, `State`, `Label`, `ShowIcon`,
+   `Icon`) and descendant tree needed to write the mapping.
+3. Map properties to `src/components/Button/Button.tsx`'s real prop types:
    - Figma `Style` → code `variant`: `Primary → primary`, `Secondary → secondary`,
      `Outline → outline`, `Ghost → ghost`, `Destructive → destructive`
-   - Figma `Size` → code `size`: map to whatever size values the component set actually exposes
-     against `sm | md | lg`
-   - Figma `State` — likely has no direct code prop (state is usually derived from `disabled`/
-     `:hover` in code rather than an explicit variant); omit unless it maps to `disabled`
-   - `ShowIcon` (boolean) → likely maps to presence of `leadingIcon`/`trailingIcon` props, not a
-     direct boolean prop — needs inspection of how the icon child instance is structured
-     (INSTANCE_SWAP) to decide whether it corresponds to `leadingIcon` or `trailingIcon`.
-5. Write `src/components/Button/Button.figma.tsx` using the template format described in the
-   `figma-code-connect` skill (`figma.connect()` parser-based file, since this appears to be a
-   normal git-based project rather one using MCP template `.figma.ts` — confirm which format the
-   team's Code Connect config expects before writing).
-6. Validate the generated file against `Button.tsx`'s actual `ButtonProps` interface — do not
+   - Figma `Size` → code `size`: `Small → sm`, `Medium → md`, `Large → lg`
+   - Figma `State` — likely no direct code prop; state (hover/disabled) is derived from
+     `:hover`/the `disabled` prop in code rather than an explicit variant — omit unless it maps
+     to `disabled`
+   - `ShowIcon` (boolean) + `Icon` (instance swap) → likely maps to presence of
+     `leadingIcon`/`trailingIcon` props rather than a single boolean — needs inspection of the
+     icon child instance to decide which prop it corresponds to
+4. Write `src/components/Button/Button.figma.tsx` using the `figma.connect()` format from the
+   `figma-code-connect` skill.
+5. Validate the generated file against `Button.tsx`'s actual `ButtonProps` interface — do not
    invent props that don't exist in code.
 
-Nothing was fabricated or guessed to unblock this — this file exists so a human (or a future
-session with the correct file URL) can pick it up with full context.
+Nothing was fabricated or guessed to unblock this. The node lookup is solved and documented above
+so no future session needs to re-diagnose it — only the plan/seat upgrade remains outside this
+session's control.
