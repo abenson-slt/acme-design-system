@@ -9,7 +9,7 @@ const meta: Meta<typeof Button> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['primary', 'secondary', 'outline', 'ghost', 'destructive'],
+      options: ['primary', 'secondary', 'outline', 'outline-inverse', 'ghost', 'destructive'],
     },
     size: {
       control: 'select',
@@ -43,6 +43,9 @@ export const AllVariants: Story = {
       <Button {...args} variant="outline">
         Outline
       </Button>
+      <Button {...args} variant="outline-inverse">
+        Outline Inverse
+      </Button>
       <Button {...args} variant="ghost">
         Ghost
       </Button>
@@ -72,7 +75,7 @@ export const AllSizes: Story = {
 export const VariantBySizeMatrix: Story = {
   render: () => (
     <div className="flex flex-col gap-4">
-      {(['primary', 'secondary', 'outline', 'ghost', 'destructive'] as const).map(
+      {(['primary', 'secondary', 'outline', 'outline-inverse', 'ghost', 'destructive'] as const).map(
         (variant) => (
           <div key={variant} className="flex items-center gap-4">
             <span className="w-24 text-body-sm text-content-muted">{variant}</span>
@@ -144,4 +147,15 @@ export const DarkMode: Story = {
   parameters: {
     backgrounds: { default: 'dark' },
   },
+};
+
+export const OnGradientHero: Story = {
+  render: () => (
+    <div className="flex flex-wrap items-center gap-4 rounded-lg bg-gradient-to-br from-interactive-primary to-bg-emphasis p-6">
+      <Button variant="outline-inverse">Get Started</Button>
+      <Button variant="outline-inverse" trailingIcon={<ArrowRight />}>
+        Learn More
+      </Button>
+    </div>
+  ),
 };

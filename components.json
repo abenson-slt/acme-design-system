@@ -8,7 +8,7 @@
       "importPath": "@acme/design-system",
       "description": "Triggers an action or event.",
       "props": [
-        { "name": "variant", "type": "'primary' | 'secondary' | 'outline' | 'ghost' | 'destructive'", "default": "'primary'" },
+        { "name": "variant", "type": "'primary' | 'secondary' | 'outline' | 'outline-inverse' | 'ghost' | 'destructive'", "default": "'primary'" },
         { "name": "size", "type": "'sm' | 'md' | 'lg'", "default": "'md'" },
         { "name": "fullWidth", "type": "boolean", "default": "false" },
         { "name": "isLoading", "type": "boolean", "default": "false", "description": "Shows a Spinner in place of the leading icon and disables the button." },
@@ -17,8 +17,9 @@
         { "name": "disabled", "type": "boolean", "default": "false" },
         { "name": "...rest", "type": "React.ButtonHTMLAttributes<HTMLButtonElement>" }
       ],
-      "variants": ["primary", "secondary", "outline", "ghost", "destructive"],
-      "example": "<Button variant=\"primary\" size=\"md\" leadingIcon={<Plus />}>Add item</Button>"
+      "variants": ["primary", "secondary", "outline", "outline-inverse", "ghost", "destructive"],
+      "example": "<Button variant=\"primary\" size=\"md\" leadingIcon={<Plus />}>Add item</Button>",
+      "notes": "Use 'outline-inverse' (white border/text on transparent background) instead of 'outline' on dark or gradient surfaces (e.g. a gradient hero), where the purple outline variant lacks contrast."
     },
     {
       "name": "Input",

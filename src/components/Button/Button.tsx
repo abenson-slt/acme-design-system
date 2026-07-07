@@ -15,6 +15,8 @@ const buttonVariants = cva(
           'border border-border bg-bg-muted text-content hover:bg-bg-subtle',
         outline:
           'border border-interactive-primary bg-transparent text-interactive-primary hover:bg-interactive-primary-subtle',
+        'outline-inverse':
+          'border border-content-on-inverse bg-transparent text-content-on-inverse hover:bg-white/10',
         ghost: 'bg-transparent text-content hover:bg-bg-subtle',
         destructive:
           'bg-error text-content-on-brand hover:opacity-90',
