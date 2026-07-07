@@ -39,7 +39,7 @@ export const Tag = React.forwardRef<HTMLSpanElement, TagProps>(
           type="button"
           onClick={onRemove}
           aria-label={removeLabel ?? `Remove ${typeof children === 'string' ? children : 'tag'}`}
-          className="hover:bg-bg-emphasis/10 -mr-1 inline-flex shrink-0 rounded-full p-0.5 focus-visible:shadow-focus focus-visible:outline-none"
+          className="-mr-1 inline-flex shrink-0 rounded-full p-0.5 hover:bg-bg-muted focus-visible:shadow-focus focus-visible:outline-none"
         >
           <X className="size-3" aria-hidden="true" />
         </button>
