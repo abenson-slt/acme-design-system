@@ -1,4 +1,4 @@
-# @acme/design-system
+# @abenson-slt/acme-design-system
 
 ## 0.2.0
 

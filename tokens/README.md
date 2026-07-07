@@ -13,7 +13,7 @@ colors, spacing, radii, typography, and shadows. Components build on top of thes
 
 ## How the two repos consume this
 
-**Design system repo (`@acme/design-system`)** owns these files and exports them:
+**Design system repo (`@abenson-slt/acme-design-system`)** owns these files and exports them:
 
 ```json
 // package.json
@@ -29,7 +29,7 @@ colors, spacing, radii, typography, and shadows. Components build on top of thes
 
 ```js
 // tailwind.config.js
-const acmePreset = require('@acme/design-system/tailwind-preset');
+const acmePreset = require('@abenson-slt/acme-design-system/tailwind-preset');
 module.exports = {
   presets: [acmePreset],
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
@@ -38,7 +38,7 @@ module.exports = {
 
 ```ts
 // app entry (e.g. main.tsx) — import once
-import '@acme/design-system/tokens.css';
+import '@abenson-slt/acme-design-system/tokens.css';
 ```
 
 ## Token model

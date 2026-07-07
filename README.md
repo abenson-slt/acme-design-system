@@ -1,4 +1,4 @@
-# @acme/design-system
+# @abenson-slt/acme-design-system
 
 React component library for ACME products, built on design tokens extracted from the
 **ACME Design System** Figma file. Consumed by `acme-app` (and potentially other consumers)
@@ -62,7 +62,7 @@ Consumer wiring, exactly as documented in `tokens/README.md`:
 
 ```js
 // consumer tailwind.config.js
-const acmePreset = require('@acme/design-system/tailwind-preset');
+const acmePreset = require('@abenson-slt/acme-design-system/tailwind-preset');
 module.exports = {
   presets: [acmePreset],
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
@@ -71,7 +71,7 @@ module.exports = {
 
 ```ts
 // consumer app entry, imported once
-import '@acme/design-system/tokens.css';
+import '@abenson-slt/acme-design-system/tokens.css';
 ```
 
 `darkMode: 'class'` is set in the preset — consumers toggle dark mode by adding `class="dark"`

@@ -1,11 +1,11 @@
 {
-  "$schema": "Machine-readable manifest of @acme/design-system components. Kept hand-authored and in sync with src/. Intended for AI agents choosing how to use this library without reading full source.",
-  "package": "@acme/design-system",
-  "importRoot": "@acme/design-system",
+  "$schema": "Machine-readable manifest of @abenson-slt/acme-design-system components. Kept hand-authored and in sync with src/. Intended for AI agents choosing how to use this library without reading full source.",
+  "package": "@abenson-slt/acme-design-system",
+  "importRoot": "@abenson-slt/acme-design-system",
   "components": [
     {
       "name": "Button",
-      "importPath": "@acme/design-system",
+      "importPath": "@abenson-slt/acme-design-system",
       "description": "Triggers an action or event.",
       "props": [
         { "name": "variant", "type": "'primary' | 'secondary' | 'outline' | 'outline-inverse' | 'ghost' | 'destructive'", "default": "'primary'" },
@@ -23,7 +23,7 @@
     },
     {
       "name": "Input",
-      "importPath": "@acme/design-system",
+      "importPath": "@abenson-slt/acme-design-system",
       "description": "Single-line text input.",
       "props": [
         { "name": "invalid", "type": "boolean", "default": "false" },
@@ -35,7 +35,7 @@
     },
     {
       "name": "Textarea",
-      "importPath": "@acme/design-system",
+      "importPath": "@abenson-slt/acme-design-system",
       "description": "Multi-line text input.",
       "props": [
         { "name": "invalid", "type": "boolean", "default": "false" },
@@ -46,7 +46,7 @@
     },
     {
       "name": "Label",
-      "importPath": "@acme/design-system",
+      "importPath": "@abenson-slt/acme-design-system",
       "description": "Accessible form label built on Radix Label. Use inside FormField or standalone with htmlFor.",
       "props": [
         { "name": "required", "type": "boolean", "default": "false", "description": "Appends a red asterisk." },
@@ -56,7 +56,7 @@
     },
     {
       "name": "FormField",
-      "importPath": "@acme/design-system",
+      "importPath": "@abenson-slt/acme-design-system",
       "description": "Composes a Label + form control + hint/error message. Clones the single child element to inject id, aria-describedby, and invalid.",
       "props": [
         { "name": "id", "type": "string", "description": "Required. Applied to the label's htmlFor and cloned onto the child control." },
@@ -70,7 +70,7 @@
     },
     {
       "name": "Spinner",
-      "importPath": "@acme/design-system",
+      "importPath": "@abenson-slt/acme-design-system",
       "description": "Standalone loading spinner (SVG). Used internally by Button's isLoading state; also usable on its own.",
       "props": [
         { "name": "size", "type": "'sm' | 'md' | 'lg'", "default": "'md'" },
@@ -81,7 +81,7 @@
     },
     {
       "name": "Badge",
-      "importPath": "@acme/design-system",
+      "importPath": "@abenson-slt/acme-design-system",
       "description": "Non-interactive status pill.",
       "props": [
         { "name": "variant", "type": "'default' | 'success' | 'warning' | 'error' | 'info'", "default": "'default'" },
@@ -92,7 +92,7 @@
     },
     {
       "name": "Tag",
-      "importPath": "@acme/design-system",
+      "importPath": "@abenson-slt/acme-design-system",
       "description": "Like Badge but interactive/removable.",
       "props": [
         { "name": "variant", "type": "'default' | 'success' | 'warning' | 'error' | 'info'", "default": "'default'" },
@@ -105,7 +105,7 @@
     },
     {
       "name": "Avatar",
-      "importPath": "@acme/design-system",
+      "importPath": "@abenson-slt/acme-design-system",
       "description": "Image avatar with graceful fallback to initials derived from `name` if no src or the image fails to load.",
       "props": [
         { "name": "name", "type": "string", "description": "Required. Used for alt text and derived initials." },
@@ -117,7 +117,7 @@
     },
     {
       "name": "Checkbox",
-      "importPath": "@acme/design-system",
+      "importPath": "@abenson-slt/acme-design-system",
       "description": "Wraps @radix-ui/react-checkbox. Supports checked, indeterminate ('indeterminate'), and unchecked states.",
       "props": [
         { "name": "invalid", "type": "boolean", "default": "false" },
@@ -131,7 +131,7 @@
     },
     {
       "name": "Radio",
-      "importPath": "@acme/design-system",
+      "importPath": "@abenson-slt/acme-design-system",
       "description": "Wraps @radix-ui/react-radio-group. Exports both Radio (item) and RadioGroup (root, required wrapper).",
       "props": [
         { "name": "value", "type": "string", "description": "Required on Radio. Passed to the parent RadioGroup's onValueChange." },
@@ -143,7 +143,7 @@
     },
     {
       "name": "Switch",
-      "importPath": "@acme/design-system",
+      "importPath": "@abenson-slt/acme-design-system",
       "description": "Wraps @radix-ui/react-switch.",
       "props": [
         { "name": "invalid", "type": "boolean", "default": "false" },
@@ -157,7 +157,7 @@
     },
     {
       "name": "Select",
-      "importPath": "@acme/design-system",
+      "importPath": "@abenson-slt/acme-design-system",
       "description": "Wraps @radix-ui/react-select. Exports Select (root), SelectTrigger, SelectValue, SelectContent, SelectGroup, SelectLabel, SelectItem, SelectSeparator.",
       "props": [
         { "name": "SelectTrigger.invalid", "type": "boolean", "default": "false" },
@@ -168,7 +168,7 @@
     },
     {
       "name": "Tooltip",
-      "importPath": "@acme/design-system",
+      "importPath": "@abenson-slt/acme-design-system",
       "description": "Wraps @radix-ui/react-tooltip. Requires TooltipProvider mounted once (typically at app root), then Tooltip/TooltipTrigger/TooltipContent per instance.",
       "props": [
         { "name": "TooltipContent.side", "type": "'top' | 'right' | 'bottom' | 'left'", "default": "'top'" },
@@ -178,7 +178,7 @@
     },
     {
       "name": "Popover",
-      "importPath": "@acme/design-system",
+      "importPath": "@abenson-slt/acme-design-system",
       "description": "Wraps @radix-ui/react-popover. Exports Popover, PopoverTrigger, PopoverAnchor, PopoverContent, PopoverClose.",
       "props": [
         { "name": "PopoverContent.align", "type": "'start' | 'center' | 'end'", "default": "'center'" },
@@ -188,7 +188,7 @@
     },
     {
       "name": "DropdownMenu",
-      "importPath": "@acme/design-system",
+      "importPath": "@abenson-slt/acme-design-system",
       "description": "Wraps @radix-ui/react-dropdown-menu. Exports DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuCheckboxItem, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuSub, DropdownMenuSubTrigger, DropdownMenuSubContent, DropdownMenuGroup.",
       "props": [
         { "name": "DropdownMenuItem.inset", "type": "boolean", "default": "false" },
@@ -198,7 +198,7 @@
     },
     {
       "name": "Dialog",
-      "importPath": "@acme/design-system",
+      "importPath": "@abenson-slt/acme-design-system",
       "description": "Wraps @radix-ui/react-dialog. Exports Dialog, DialogTrigger, DialogContent (renders its own Portal + Overlay + close button), DialogHeader, DialogFooter, DialogTitle, DialogDescription, DialogClose.",
       "props": [
         { "name": "Dialog.open / defaultOpen / onOpenChange", "type": "standard Radix Dialog.Root props" }
@@ -207,7 +207,7 @@
     },
     {
       "name": "Toast",
-      "importPath": "@acme/design-system",
+      "importPath": "@abenson-slt/acme-design-system",
       "description": "Wraps @radix-ui/react-toast. Requires ToastProvider mounted once near the app root — it renders both the Radix Provider AND Viewport for you. Render individual Toast elements (controlled via your own open state or a toast-management hook) anywhere inside it.",
       "props": [
         { "name": "Toast.variant", "type": "'default' | 'success' | 'warning' | 'error' | 'info'", "default": "'default'" },
@@ -219,7 +219,7 @@
     },
     {
       "name": "Card",
-      "importPath": "@acme/design-system",
+      "importPath": "@abenson-slt/acme-design-system",
       "description": "Simple container. Exports Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter.",
       "props": [
         { "name": "...rest (all subcomponents)", "type": "React.HTMLAttributes<HTMLDivElement> (or HTMLHeadingElement/HTMLParagraphElement for Title/Description)" }
@@ -228,7 +228,7 @@
     },
     {
       "name": "Alert",
-      "importPath": "@acme/design-system",
+      "importPath": "@abenson-slt/acme-design-system",
       "description": "Feedback-token-driven callout with an icon + title + description slot. role=\"alert\".",
       "props": [
         { "name": "variant", "type": "'default' | 'success' | 'warning' | 'error' | 'info'", "default": "'default'" },

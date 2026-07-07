@@ -1,5 +1,5 @@
 {
-  "name": "@acme/design-system",
+  "name": "@abenson-slt/acme-design-system",
   "version": "0.2.0",
   "description": "ACME Design System — React component library",
   "main": "./dist/index.cjs",

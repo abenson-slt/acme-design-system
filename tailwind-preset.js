@@ -2,14 +2,14 @@
  * ACME Design System — Tailwind preset.
  *
  * Usage (in the app repo's tailwind.config.js):
- *   const acmePreset = require('@acme/design-system/tailwind-preset');
+ *   const acmePreset = require('@abenson-slt/acme-design-system/tailwind-preset');
  *   module.exports = {
  *     presets: [acmePreset],
  *     content: ['./src/**\/*.{js,ts,jsx,tsx}'],
  *   };
  *
  * Also import the token variables once at your app root:
- *   import '@acme/design-system/tokens.css';
+ *   import '@abenson-slt/acme-design-system/tokens.css';
  *
  * Semantic colors/shadows resolve via CSS variables, so light/dark is handled
  * by toggling the `dark` class on <html>. Primitives are static values, useful
