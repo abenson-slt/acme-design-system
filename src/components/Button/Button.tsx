@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { ChevronDown } from 'lucide-react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../../lib/cn';
 import { Spinner } from '../Spinner';
@@ -42,6 +43,10 @@ export interface ButtonProps
     VariantProps<typeof buttonVariants> {
   leadingIcon?: React.ReactNode;
   trailingIcon?: React.ReactNode;
+  /** Shows a dropdown chevron as the trailing indicator. Maps to Figma `ShowDropdown` property. */
+  showDropdown?: boolean;
+  /** Custom icon to use as the dropdown indicator. Defaults to a ChevronDown icon. Maps to Figma `DropdownIcon` property. */
+  dropdownIcon?: React.ReactNode;
   isLoading?: boolean;
   fullWidth?: boolean;
 }
@@ -55,6 +60,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       fullWidth,
       leadingIcon,
       trailingIcon,
+      showDropdown = false,
+      dropdownIcon,
       isLoading,
       disabled,
       children,
@@ -64,6 +71,10 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     const isDisabled = disabled || isLoading;
 
+    const dropdownIndicator = showDropdown
+      ? dropdownIcon ?? <ChevronDown />
+      : null;
+
     return (
       <button
         ref={ref}
@@ -71,6 +82,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={isDisabled}
         aria-disabled={isDisabled || undefined}
         aria-busy={isLoading || undefined}
+        aria-haspopup={showDropdown ? 'true' : undefined}
         {...props}
       >
         {isLoading ? (
@@ -81,6 +93,9 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {children}
         {!isLoading && trailingIcon && (
           <span className="shrink-0">{trailingIcon}</span>
+        )}
+        {!isLoading && dropdownIndicator && (
+          <span className="shrink-0">{dropdownIndicator}</span>
         )}
       </button>
     );

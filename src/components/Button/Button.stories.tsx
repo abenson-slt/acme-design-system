@@ -15,6 +15,10 @@ const meta: Meta<typeof Button> = {
       control: 'select',
       options: ['sm', 'md', 'lg'],
     },
+    showDropdown: {
+      control: 'boolean',
+      description: 'Shows a dropdown chevron indicator on the trailing side. Maps to Figma ShowDropdown property.',
+    },
   },
   args: {
     children: 'Button',
@@ -158,4 +162,40 @@ export const OnGradientHero: Story = {
       </Button>
     </div>
   ),
+};
+
+export const WithDropdown: Story = {
+  render: (args) => (
+    <div className="flex flex-col gap-6">
+      <div className="flex flex-wrap items-center gap-4">
+        {(['primary', 'secondary', 'outline', 'ghost', 'destructive'] as const).map((variant) => (
+          <Button key={variant} {...args} variant={variant} showDropdown>
+            {variant.charAt(0).toUpperCase() + variant.slice(1)}
+          </Button>
+        ))}
+      </div>
+      <div className="flex flex-wrap items-center gap-4">
+        {(['sm', 'md', 'lg'] as const).map((size) => (
+          <Button key={size} {...args} size={size} showDropdown>
+            {size.toUpperCase()}
+          </Button>
+        ))}
+      </div>
+      <div className="flex flex-wrap items-center gap-4">
+        <Button showDropdown leadingIcon={<Plus />}>
+          With Leading Icon
+        </Button>
+        <Button showDropdown disabled>
+          Disabled
+        </Button>
+        <Button showDropdown isLoading>
+          Loading
+        </Button>
+      </div>
+    </div>
+  ),
+  args: {
+    variant: 'primary',
+    size: 'md',
+  },
 };
